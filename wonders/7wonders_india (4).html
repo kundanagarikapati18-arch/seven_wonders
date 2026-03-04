@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7 Wonders of India</title>
+<style>
+:root{--g:#c9a84c;--g2:#e8c97a;--g3:#8a6820;--bg:#080a10;--bg2:#0d1018;--card:#111520;--tx:#f0e8d5;--mt:#7a7060;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:Georgia,"Times New Roman",serif;background:var(--bg);color:var(--tx);overflow-x:hidden;}
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-thumb{background:var(--g3);}
+nav{position:fixed;top:0;left:0;right:0;z-index:800;display:flex;align-items:center;justify-content:space-between;padding:.9rem 2.5rem;background:rgba(8,10,16,.97);border-bottom:1px solid rgba(201,168,76,.12);}
+.nlogo{font-family:"Palatino Linotype",Palatino,Georgia,serif;font-size:.95rem;font-weight:700;letter-spacing:.2em;color:var(--g);text-transform:uppercase;}
+.nlogo b{color:var(--tx);font-weight:400;}
+.nlinks{display:flex;gap:2rem;list-style:none;}
+.nlinks a{font-family:Verdana,sans-serif;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mt);text-decoration:none;cursor:pointer;transition:color .25s;}
+.nlinks a:hover{color:var(--g);}
+#home{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;padding:110px 2rem 4rem;overflow:hidden;}
+.hbg{position:absolute;inset:0;z-index:0;}
+.hbg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,10,16,.1) 0%,rgba(8,10,16,.6) 60%,rgba(8,10,16,1) 100%);}
+.hbgimg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.25;filter:saturate(.7);}
+.hin{position:relative;z-index:1;text-align:center;max-width:780px;}
+.hbadge{display:inline-flex;align-items:center;gap:1rem;font-family:Verdana,sans-serif;font-size:.58rem;letter-spacing:.5em;text-transform:uppercase;color:var(--g);margin-bottom:1.8rem;}
+.hln{height:1px;width:45px;background:linear-gradient(90deg,transparent,var(--g));}
+.hln.r{background:linear-gradient(90deg,var(--g),transparent);}
+h1.ht{font-family:"Palatino Linotype",Palatino,Georgia,serif;font-size:clamp(3.8rem,10vw,8.5rem);font-weight:700;line-height:.88;background:linear-gradient(145deg,#f0d878 0%,#c9a84c 30%,#fff5e0 60%,#c9a84c 85%,#e8c97a 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 50px rgba(201,168,76,.2));margin-bottom:.35rem;}
+.hsub{font-family:"Palatino Linotype",Palatino,Georgia,serif;font-size:clamp(1rem,2.5vw,1.9rem);font-weight:400;color:rgba(240,232,213,.65);letter-spacing:.38em;text-transform:uppercase;margin-bottom:1.4rem;}
+.hdesc{font-family:Georgia,serif;font-size:1.1rem;font-style:italic;color:var(--mt);line-height:1.85;max-width:480px;margin:0 auto 2.8rem;}
+.hcta{display:inline-flex;align-items:center;gap:.7rem;cursor:pointer;padding:.85rem 2.4rem;border:none;background:linear-gradient(135deg,var(--g3),var(--g));color:var(--bg);font-family:Verdana,sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);transition:all .3s;}
+.hcta:hover{filter:brightness(1.18);transform:translateY(-2px);}
+.shint{position:absolute;bottom:1.8rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.4rem;z-index:1;font-family:Verdana,sans-serif;font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mt);}
+.sbar{width:1px;height:36px;background:linear-gradient(180deg,var(--g),transparent);animation:sb 2s infinite;}
+@keyframes sb{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+section{padding:6rem 2rem;}
+.sh2{text-align:center;margin-bottom:3.5rem;}
+.sl2{font-family:Verdana,sans-serif;font-size:.58rem;letter-spacing:.5em;text-transform:uppercase;color:var(--g);display:block;margin-bottom:.7rem;}
+.st2{font-family:"Palatino Linotype",Palatino,Georgia,serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:700;color:var(--tx);}
+.sr2{display:flex;align-items:center;justify-content:center;gap:.8rem;margin-top:.6rem;}
+.sr2 span{height:1px;width:45px;background:linear-gradient(90deg,transparent,var(--g));}
+.sr2 span.r{background:linear-gradient(90deg,var(--g),transparent);}
+.sr2 i{color:var(--g);font-style:normal;font-size:.75rem;}
+#wonders{background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.4rem;max-width:1280px;margin:0 auto;}
+.fc{height:370px;perspective:1300px;cursor:pointer;}
+.fci{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .82s cubic-bezier(.4,0,.2,1);}
+.fc:hover .fci{transform:rotateY(180deg);}
+.ff,.fb{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:2px;overflow:hidden;}
+.ff{background:var(--card);border:1px solid rgba(201,168,76,.14);}
+.ff .iw{width:100%;height:67%;position:relative;overflow:hidden;}
+.ff .iw .art{position:absolute;inset:0;z-index:0;}
+.ff .iw img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;filter:brightness(.85) saturate(1.15);transition:transform .6s,filter .6s;}
+.fc:hover .ff .iw img{transform:scale(1.07);filter:brightness(.5) saturate(1.3);}
+.fnum{position:absolute;top:.75rem;right:.8rem;font-family:"Palatino Linotype",Palatino,serif;font-size:2.6rem;font-weight:700;color:rgba(201,168,76,.1);line-height:1;pointer-events:none;z-index:2;}
+.fi{padding:1.1rem 1.4rem;border-top:1px solid rgba(201,168,76,.11);}
+.fi h3{font-family:"Palatino Linotype",Palatino,Georgia,serif;font-size:1.05rem;font-weight:700;color:var(--tx);margin-bottom:.22rem;}
+.fi p{font-family:Verdana,sans-serif;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--g);}
+.fb{transform:rotateY(180deg);background:linear-gradient(150deg,#150f26,#0c1220);border:1px solid rgba(201,168,76,.38);padding:1.7rem;display:flex;flex-direction:column;justify-content:space-between;}
+.fb::before{content:'';position:absolute;inset:0;opacity:.03;background-image:repeating-linear-gradient(45deg,var(--g) 0,var(--g) 1px,transparent 0,transparent 50%);background-size:7px 7px;}
+.bt2{font-family:Verdana,sans-serif;font-size:.55rem;letter-spacing:.4em;text-transform:uppercase;color:var(--g);display:block;margin-bottom:.35rem;}
+.bh2{font-family:"Palatino Linotype",Palatino,Georgia,serif;font-size:1.25rem;font-weight:700;color:var(--tx);margin-bottom:.7rem;}
+.bd2{height:1px;background:linear-gradient(90deg,var(--g),transparent);margin-bottom:.9rem;}
+.bl2{list-style:none;}
+.bl2 li{font-family:Georgia,serif;font-size:.88rem;color:var(--mt);padding:.27rem 0 .27rem 1rem;position:relative;line-height:1.4;}
+.bl2 li::before{content:'◆';position:absolute;left:0;color:var(--g);font-size:.3rem;top:.6rem;}
+.bl2 li b{color:var(--tx);}
+.ebtn{width:100%;padding:.68rem;cursor:pointer;border:none;background:linear-gradient(135deg,var(--g3),var(--g));color:var(--bg);font-family:Verdana,sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;clip-path:polygon(7px 0%,100% 0%,calc(100% - 7px) 100%,0% 100%);transition:filter .25s;position:relative;z-index:1;}
+.ebtn:hover{filter:brightness(1.2);}
+#dp{display:none;min-height:100vh;}
+#dp.on{display:block;}
+#mp.off{display:none;}
+.dh{position:relative;height:62vh;min-height:400px;overflow:hidden;}
+.dh .art2{position:absolute;inset:0;z-index:0;}
+.dh img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;filter:brightness(.42) saturate(1.2);}
+.dhov{position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(8,10,16,.12) 0%,rgba(8,10,16,.88) 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:2.8rem 3rem;}
+.dbk{display:inline-flex;align-items:center;gap:.5rem;background:none;border:none;font-family:Verdana,sans-serif;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--g);cursor:pointer;margin-bottom:1.3rem;transition:gap .25s;padding:0;}
+.dbk:hover{gap:.9rem;}
+.dtag{font-family:Verdana,sans-serif;font-size:.58rem;letter-spacing:.38em;text-transform:uppercase;color:var(--g);display:block;margin-bottom:.35rem;}
+.dttl{font-family:"Palatino Linotype",Palatino,Georgia,serif;font-size:clamp(2rem,5vw,4.2rem);font-weight:700;color:var(--tx);text-shadow:0 2px 30px rgba(0,0,0,.8);margin-bottom:.3rem;}
+.dloc{font-family:Georgia,serif;font-style:italic;color:var(--mt);font-size:.95rem;}
+.vbtn{display:inline-flex;align-items:center;gap:.7rem;padding:.8rem 1.7rem;margin-top:1.3rem;background:rgba(201,168,76,.09);border:1px solid rgba(201,168,76,.33);color:var(--g);font-family:Verdana,sans-serif;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:all .25s;}
+.vbtn:hover{background:rgba(201,168,76,.18);}
+.vbtn.on{animation:vp 1.5s infinite;}
+@keyframes vp{0%,100%{box-shadow:0 0 0 0 rgba(201,168,76,.3)}50%{box-shadow:0 0 0 10px rgba(201,168,76,0)}}
+.vwv{display:flex;align-items:center;gap:2px;}
+.vwv span{width:3px;background:var(--g);border-radius:2px;animation:wa .75s infinite ease-in-out;}
+.vwv span:nth-child(1){height:5px;animation-delay:0s}.vwv span:nth-child(2){height:13px;animation-delay:.1s}.vwv span:nth-child(3){height:9px;animation-delay:.2s}.vwv span:nth-child(4){height:17px;animation-delay:.3s}.vwv span:nth-child(5){height:7px;animation-delay:.4s}
+@keyframes wa{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
+.vwv.off span{animation-play-state:paused;transform:scaleY(.3);}
+.dbody{max-width:1180px;margin:0 auto;padding:2.5rem 2rem;}
+.tabs{display:flex;border-bottom:1px solid rgba(201,168,76,.13);margin-bottom:2.3rem;}
+.tb{padding:.7rem 1.6rem;background:none;border:none;cursor:pointer;font-family:Verdana,sans-serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mt);position:relative;transition:color .25s;}
+.tb.on{color:var(--g);}
+.tb.on::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--g);}
+.tb:hover{color:var(--tx);}
+.tc{display:none;}.tc.on{display:block;}
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:2.8rem;}
+@media(max-width:720px){.ig{grid-template-columns:1fr;}.nlinks{display:none;}.grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:460px){.grid{grid-template-columns:1fr;}}
+.ics{display:flex;flex-direction:column;gap:.75rem;}
+.ic{background:var(--card);border:1px solid rgba(201,168,76,.11);padding:1rem 1.3rem;display:flex;align-items:center;gap:.9rem;}
+.ici{width:36px;height:36px;min-width:36px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.22);display:flex;align-items:center;justify-content:center;font-size:1.05rem;}
+.icl{font-family:Verdana,sans-serif;font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:var(--g);display:block;margin-bottom:.18rem;}
+.icv{font-family:"Palatino Linotype",Palatino,Georgia,serif;font-size:.92rem;color:var(--tx);}
+.fth{font-family:"Palatino Linotype",Palatino,Georgia,serif;font-size:1.15rem;color:var(--tx);padding-bottom:.7rem;border-bottom:1px solid rgba(201,168,76,.13);margin-bottom:1.1rem;}
+.fact{display:flex;gap:.75rem;padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,.03);}
+.factn{font-family:"Palatino Linotype",Palatino,serif;font-size:1.35rem;font-weight:700;color:rgba(201,168,76,.17);line-height:1;min-width:26px;}
+.factt{font-family:Georgia,serif;font-size:1rem;color:var(--mt);line-height:1.6;}
+.factt b{color:var(--tx);}
+.hist p{font-family:Georgia,serif;font-size:1.1rem;color:var(--mt);line-height:1.88;margin-bottom:1.4rem;max-width:740px;}
+.hist p b{color:var(--g);}
+.acg{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:1rem;margin-top:1.3rem;}
+.acard{background:var(--card);border:1px solid rgba(201,168,76,.11);padding:1.3rem;text-align:center;}
+.aico{font-size:1.7rem;margin-bottom:.5rem;}
+.albl{font-family:Verdana,sans-serif;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--g);display:block;margin-bottom:.25rem;}
+.aval{font-family:"Palatino Linotype",Palatino,Georgia,serif;font-size:.9rem;color:var(--tx);}
+.vti{font-family:Georgia,serif;font-style:italic;color:var(--mt);font-size:1.05rem;margin-bottom:1.5rem;}
+.vtgrid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+@media(max-width:600px){.vtgrid{grid-template-columns:1fr;}}
+.vtc{position:relative;border-radius:2px;overflow:hidden;cursor:pointer;aspect-ratio:16/9;border:1px solid rgba(201,168,76,.15);transition:border-color .25s;}
+.vtc:hover{border-color:var(--g);}
+.vtc .art3{position:absolute;inset:0;z-index:0;}
+.vtc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;filter:brightness(.55);transition:filter .3s;}
+.vtc:hover img{filter:brightness(.3);}
+.vtcov{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;}
+.vtcico{font-size:2.2rem;}
+.vtclbl{font-family:"Palatino Linotype",Palatino,Georgia,serif;font-size:.85rem;color:var(--tx);letter-spacing:.05em;text-align:center;padding:0 .5rem;}
+.vtcsub{font-family:Verdana,sans-serif;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--g);}
+.vtcbtn{margin-top:.4rem;padding:.38rem 1rem;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.38);color:var(--g);font-family:Verdana,sans-serif;font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;}
+#vrm{display:none;position:fixed;inset:0;z-index:9999;background:#000;flex-direction:column;}
+#vrm.on{display:flex;}
+.vrh{position:absolute;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.4rem;background:linear-gradient(180deg,rgba(0,0,0,.85) 0%,transparent 100%);}
+.vrtit{font-family:"Palatino Linotype",Palatino,Georgia,serif;font-size:.95rem;font-weight:700;color:var(--g);letter-spacing:.08em;}
+.vrx{background:rgba(0,0,0,.75);border:1px solid rgba(201,168,76,.38);color:var(--g);width:38px;height:38px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.vrx:hover{background:rgba(201,168,76,.22);}
+#vrframe{width:100%;height:100%;border:none;display:block;}
+.vrvtabs{position:absolute;bottom:0;left:0;right:0;z-index:20;display:flex;justify-content:center;gap:.5rem;padding:.9rem;background:linear-gradient(0deg,rgba(0,0,0,.85) 0%,transparent 100%);}
+.vrvt{padding:.45rem 1.1rem;background:rgba(0,0,0,.75);border:1px solid rgba(201,168,76,.28);color:var(--mt);font-family:Verdana,sans-serif;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:all .2s;}
+.vrvt.on{background:rgba(201,168,76,.2);border-color:var(--g);color:var(--g);}
+.vrvt:hover{border-color:var(--g);color:var(--tx);}
+.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:var(--card);border:1px solid rgba(201,168,76,.33);color:var(--tx);padding:.65rem 1.8rem;z-index:9998;font-family:Verdana,sans-serif;font-size:.65rem;letter-spacing:.12em;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap;}
+.toast.show{opacity:1;}
+footer{padding:2.5rem 2rem;border-top:1px solid rgba(201,168,76,.07);text-align:center;}
+.flogo{font-family:"Palatino Linotype",Palatino,Georgia,serif;font-size:1.05rem;color:var(--g);letter-spacing:.2em;margin-bottom:.4rem;}
+.ftxt{font-family:Georgia,serif;font-style:italic;color:var(--mt);font-size:.85rem;}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nlogo">7 Wonders <b>of</b> India</div>
+  <ul class="nlinks">
+    <li><a onclick="goHome()">Home</a></li>
+    <li><a href="#wonders">Wonders</a></li>
+    <li><a onclick="openVRDirect()">Virtual Tour</a></li>
+  </ul>
+</nav>
+
+<div id="mp">
+  <section id="home">
+    <div class="hbg"></div>
+    <div class="hbgimg" id="hbgimg"></div>
+    <div class="hin">
+      <div class="hbadge"><span class="hln"></span>A Journey Through Time<span class="hln r"></span></div>
+      <h1 class="ht">7 Wonders</h1>
+      <div class="hsub">of India</div>
+      <p class="hdesc">Seven extraordinary monuments — eternal testaments to the genius, devotion, and artistry of civilizations past.</p>
+      <button class="hcta" onclick="document.getElementById('wonders').scrollIntoView({behavior:'smooth'})">◆ Begin Exploration</button>
+    </div>
+    <div class="shint"><span>Scroll</span><div class="sbar"></div></div>
+  </section>
+  <section id="wonders">
+    <div class="sh2"><span class="sl2">Heritage & History</span><h2 class="st2">The Seven Wonders</h2><div class="sr2"><span></span><i>◆</i><span class="r"></span></div></div>
+    <div class="grid" id="cg"></div>
+  </section>
+  <footer><div class="flogo">◆ 7 Wonders of India ◆</div><p class="ftxt">Explore the timeless heritage of an ancient civilization</p></footer>
+</div>
+
+<div id="dp">
+  <div class="dh">
+    <div class="art2" id="dart"></div>
+    <img id="dimg" src="" alt="">
+    <div class="dhov">
+      <button class="dbk" onclick="goHome()">← Back to Wonders</button>
+      <span class="dtag" id="dtag"></span>
+      <h1 class="dttl" id="dttl"></h1>
+      <p class="dloc" id="dloc"></p>
+      <button class="vbtn" id="vbtn" onclick="toggleVoice()">
+        <div class="vwv off" id="vwaves"><span></span><span></span><span></span><span></span><span></span></div>
+        <span id="vbtxt">🎧 Play Voice Guide</span>
+      </button>
+    </div>
+  </div>
+  <div class="dbody">
+    <div class="tabs">
+      <button class="tb on" onclick="tab('ov',this)">Overview</button>
+      <button class="tb" onclick="tab('hi',this)">History</button>
+      <button class="tb" onclick="tab('ar',this)">Architecture</button>
+      <button class="tb" onclick="tab('vr',this)">🔭 360° Virtual Tour</button>
+    </div>
+    <div class="tc on" id="tc-ov"><div class="ig"><div class="ics" id="ics"></div><div><div class="fth">Fascinating Facts</div><div id="flist"></div></div></div></div>
+    <div class="tc" id="tc-hi"><div class="hist" id="htext"></div></div>
+    <div class="tc" id="tc-ar"><div class="hist" id="atext"></div><div class="acg" id="acg"></div></div>
+    <div class="tc" id="tc-vr"><p class="vti">Select a view to launch an immersive fullscreen 360° experience.</p><div class="vtgrid" id="vtg"></div></div>
+  </div>
+</div>
+
+<div id="vrm">
+  <div class="vrh"><span class="vrtit" id="vrtit">360° Virtual Tour</span><div style="display:flex;gap:.5rem"><button class="vrx" onclick="vrFS()" title="Fullscreen">⛶</button><button class="vrx" onclick="closeVR()">✕</button></div></div>
+  <iframe id="vrframe" src="" allowfullscreen allow="xr-spatial-tracking; gyroscope; accelerometer"></iframe>
+  <div class="vrvtabs" id="vrvtabs"></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const W=[
+  {
+    name:"Taj Mahal",loc:"Agra, Uttar Pradesh",tag:"UNESCO World Heritage · Symbol of Eternal Love",
+    art:"linear-gradient(160deg,#0a1628 0%,#1a3a5c 30%,#4a8fb5 55%,#c8d8e8 70%,#f5f0e8 85%,#e8ddd0 100%)",
+    art2:"linear-gradient(180deg,#0d2240 0%,#1a4a7a 25%,#3a7aaa 45%,#b8cfe0 65%,#e8e0d5 100%)",
+    img:"taj.jpg",
+    heroImg:"taj.jpg",
+    views:[
+      {label:"Main Facade",sub:"The iconic white marble",art:"linear-gradient(160deg,#87CEEB 0%,#d4eaf5 35%,#f5f0e8 55%,#e0d5c0 75%,#a09070 100%)",img:"taj.jpg",sv:"https://www.google.com/maps/embed?pb=!4v1714000000!6m8!1m7!1sCAoSLEFGMVFpcE9UYWpNYWhhbDEyMzQ1!2m2!1d27.175144!2d78.042142!3f180!4f5!5f0.7820865974627469"},
+      {label:"Garden & Reflection",sub:"The Char Bagh gardens",art:"linear-gradient(180deg,#1a3a5c 0%,#4a8fb5 30%,#87ceeb 50%,#a8d8a0 65%,#3a6030 100%)",img:"taj.jpg",sv:"https://www.google.com/maps/embed?pb=!4v1714000001!6m8!1m7!1sCAoSLEFGMVFpcE9UYWpHYXJkZW4xMjM0NQ!2m2!1d27.1752!2d78.0419!3f0!4f0!5f0.7820865974627469"},
+    ],
+    infoCards:[{e:"📍",l:"Location",v:"Agra, Uttar Pradesh"},{e:"🏗️",l:"Built By",v:"Emperor Shah Jahan"},{e:"📅",l:"Constructed",v:"1632 – 1653 AD"},{e:"🎨",l:"Style",v:"Mughal Architecture"}],
+    facts:[{t:"Built by <b>20,000 artisans</b> from Central Asia and India."},{t:"Minarets tilt slightly <b>outward</b> to fall away from the tomb."},{t:"Changes colour: <b>pink at dawn</b>, white midday, golden at night."},{t:"Took <b>22 years</b> and 1,000 elephants to build."}],
+    history:"<p>The Taj Mahal was commissioned in <b>1632</b> by Emperor Shah Jahan to house the tomb of his beloved wife Mumtaz Mahal, who died giving birth to their 14th child.</p><p>Construction employed over <b>20,000 artisans</b> from Persia, the Ottoman Empire, and India. Rare materials were sourced across Asia — white marble from Makrana, jade from China.</p><p>Shah Jahan was later imprisoned by his son Aurangzeb in Agra Fort, where he could gaze at the Taj Mahal from his window until his death in 1666. He was buried beside Mumtaz.</p>",
+    archText:"<p>The Taj exemplifies <b>Mughal architecture</b> — a blend of Persian, Ottoman Turkish, and Indian styles. The main dome rises 73 metres, flanked by four 40-metre minarets. The entire complex is symmetrically laid on a central axis around a reflecting pool.</p>",
+    archCards:[{i:"🕌",l:"Dome Height",v:"73 Metres"},{i:"🏛️",l:"Minarets",v:"4 × 40m"},{i:"💎",l:"Material",v:"Makrana Marble"},{i:"📐",l:"Complex Area",v:"17 Hectares"}],
+    voice:"Welcome to the Taj Mahal, the crown jewel of India, in Agra, Uttar Pradesh. Built between 1632 and 1653 by Emperor Shah Jahan as a tribute to his beloved wife Mumtaz Mahal, this masterpiece is an eternal symbol of love. Over 20,000 artisans crafted this wonder using white marble from Makrana. The main dome reaches 73 metres. The Taj changes colour throughout the day — pinkish at dawn, milky white in the afternoon, and golden in the moonlight."
+  },
+  {
+    name:"Hampi",loc:"Karnataka",tag:"Ruined Capital of the Vijayanagara Empire",
+    art:"linear-gradient(145deg,#3d2010 0%,#6b3a18 20%,#8b5a2a 40%,#c4885a 60%,#d4a070 80%,#e8c8a0 100%)",
+    art2:"linear-gradient(160deg,#2a1508 0%,#5a3015 25%,#8a5520 50%,#b07838 75%,#c89a60 100%)",
+    img:"hampi.jpg",
+    heroImg:"hampi.jpg",
+    views:[
+      {label:"Virupaksha Temple",sub:"Ancient living temple",art:"linear-gradient(180deg,#87CEEB 0%,#b0d8f0 30%,#d4c090 55%,#a07040 80%,#704020 100%)",img:"hampi.jpg",sv:"https://www.google.com/maps/embed?pb=!4v1714000020!6m8!1m7!1sF:v_u2LQ9F8Fvs7KMUA7pA!2m2!1d15.335185!2d76.461685!3f100!4f0!5f0.7820865974627469"},
+      {label:"Boulder Landscape",sub:"Surreal ruins among rocks",art:"linear-gradient(160deg,#ff8c40 0%,#c04a10 40%,#5a2008 80%,#3a1005 100%)",img:"hampi.jpg",sv:"https://www.google.com/maps/embed?pb=!4v1714000021!6m8!1m7!1sF:v_u2LQ9F8Fvs7KMUA7pA!2m2!1d15.336!2d76.463!3f200!4f0!5f0.7820865974627469"},
+    ],
+    infoCards:[{e:"📍",l:"Location",v:"Karnataka"},{e:"🏗️",l:"Built By",v:"Vijayanagara Empire"},{e:"📅",l:"Period",v:"14th–16th Century"},{e:"🎨",l:"Style",v:"Dravidian Architecture"}],
+    facts:[{t:"Once the <b>second largest city</b> in the world after Beijing."},{t:"Over <b>1,600 surviving structures</b> across 26 sq km."},{t:"Virupaksha Temple <b>continuously worshipped</b> for 600+ years."},{t:"Sacked and burned in <b>1565 AD</b> after the Battle of Talikota."}],
+    history:"<p>Hampi was the <b>capital of the Vijayanagara Empire</b>, founded in 1336. At its peak under Krishnadevaraya it was the world's second largest city — half a million people.</p><p>Portuguese traders wrote of markets selling silks, jewels, and spices. The empire was a great patron of architecture, literature, and art.</p><p>In 1565, a coalition of Deccan Sultanates defeated the empire at the <b>Battle of Talikota</b>. The city burned for months. <b>UNESCO World Heritage Site since 1986</b>.</p>",
+    archText:"<p>Hampi's architecture showcases the <b>Dravidian style</b> with soaring gopurams, elaborately carved stone chariots, and massive temple complexes set among surreal boulder landscapes. The Stone Chariot at Vittala Temple is one of India's most iconic monuments.</p>",
+    archCards:[{i:"🛕",l:"Temples",v:"500+"},{i:"🗿",l:"Site Area",v:"26 sq km"},{i:"🏛️",l:"Style",v:"Dravidian"},{i:"📅",l:"UNESCO",v:"1986"}],
+    voice:"Welcome to Hampi, the magnificent ancient capital of the Vijayanagara Empire in Karnataka. Founded in the 14th century, this city was once the second largest in the world. Today it is a UNESCO World Heritage Site, with over 1,600 surviving structures spread across 26 square kilometres of surreal boulder-strewn landscape. The Virupaksha Temple has been in continuous worship for over 600 years. In 1565, the Deccan Sultanates sacked and burned this magnificent city, leaving behind the haunting ruins we see today."
+  },
+  {
+    name:"Khajuraho",loc:"Madhya Pradesh",tag:"Temples of Celestial Art & Devotion",
+    art:"linear-gradient(145deg,#3a1a08 0%,#7a4020 25%,#b07038 50%,#c89050 75%,#e8c888 100%)",
+    art2:"linear-gradient(160deg,#2a1205 0%,#5a2e10 30%,#8a5020 60%,#b87840 85%,#c89860 100%)",
+    img:"khajuraho.jpg",
+    heroImg:"khajuraho.jpg",
+    views:[
+      {label:"Kandariya Temple",sub:"The great Nagara shikhara",art:"linear-gradient(180deg,#87CEEB 0%,#c0d8f0 35%,#d4b878 60%,#a07840 85%,#705520 100%)",img:"khajuraho.jpg",sv:"https://www.google.com/maps/embed?pb=!4v1714000000010!6m8!1m7!1sKhajurahoStreetView1!2m2!1d24.8318!2d79.9199!3f90!4f0!5f0.7820865974627469"},
+      {label:"Sculpture Detail",sub:"Intricate carved figures",art:"linear-gradient(145deg,#5a3010 0%,#8a5030 30%,#c08050 65%,#e8c890 100%)",img:"khajuraho.jpg",sv:"https://www.google.com/maps/embed?pb=!4v1714000000011!6m8!1m7!1sKhajurahoStreetView2!2m2!1d24.8321!2d79.9203!3f270!4f0!5f0.7820865974627469"},
+    ],
+    infoCards:[{e:"📍",l:"Location",v:"Madhya Pradesh"},{e:"🏗️",l:"Built By",v:"Chandela Rajputs"},{e:"📅",l:"Period",v:"950 – 1050 AD"},{e:"🎨",l:"Style",v:"Nagara Architecture"}],
+    facts:[{t:"Originally <b>85 temples</b> built; only 25 survive today."},{t:"Only <b>10% of carvings</b> are erotic — rest show gods & life."},{t:"Hidden in <b>dense jungle</b> for 800 years, rediscovered 1838."},{t:"Sculptures represent <b>Tantra philosophy</b> — unity of all life."}],
+    history:"<p>The Khajuraho temples were built by the <b>Chandela Rajput dynasty</b> between 950 and 1050 AD. At their peak, 85 temples stood here, dedicated to both Hindu and Jain faiths.</p><p>Rediscovered by British engineer T.S. Burt in <b>1838</b> while surveying jungle trails. For centuries they had been hidden in dense forest, known only to locals.</p><p>Designated a <b>UNESCO World Heritage Site in 1986</b>, Khajuraho's sculptures represent a philosophy of wholeness — integrating spirituality and daily life as divine expression.</p>",
+    archText:"<p>Khajuraho temples exemplify the <b>Nagara style</b> — built on high platforms with curvilinear shikharas rising like mountain peaks. Every surface covered with sculptures in horizontal bands depicting gods, celestial beings, and daily life with extraordinary detail.</p>",
+    archCards:[{i:"🕌",l:"Style",v:"Nagara Shikhara"},{i:"🗿",l:"Sculptures",v:"Thousands"},{i:"🏛️",l:"Surviving",v:"25 of 85"},{i:"📅",l:"UNESCO",v:"1986"}],
+    voice:"Welcome to Khajuraho, magnificent temples in Madhya Pradesh, built by the Chandela Rajputs between 950 and 1050 AD. Originally 85 temples graced this site; 25 remarkable structures survive today. The temples are world-famous for their intricate sculptural work. Only 10 percent of the carvings are erotic. Hidden in jungle for 800 years, the temples were rediscovered in 1838 and designated a UNESCO World Heritage Site in 1986."
+  },
+  {
+    name:"Konark Sun Temple",loc:"Odisha",tag:"The Great Stone Chariot of the Sun God",
+    art:"linear-gradient(145deg,#1a0800 0%,#4a2008 20%,#8a5020 45%,#c08030 65%,#e8c850 90%,#f0d860 100%)",
+    art2:"linear-gradient(160deg,#100500 0%,#3a1808 25%,#7a4018 50%,#b07028 75%,#e0b050 100%)",
+    img:"konark.jpg",
+    heroImg:"konark.jpg",
+    views:[
+      {label:"Temple & Chariot Wheels",sub:"The sundial wheels of Surya",art:"linear-gradient(160deg,#e8c040 0%,#a07010 40%,#804808 65%,#3a1802 100%)",img:"konark.jpg",sv:"https://www.google.com/maps/embed?pb=!4v1714000030!6m8!1m7!1sCAoSLEFGMVFpcE9Lb25hcmsxMjM0NTY!2m2!1d19.887744!2d86.094905!3f60!4f0!5f0.7820865974627469"},
+      {label:"Sculpted Panels",sub:"Intricate stone carvings",art:"linear-gradient(145deg,#8a6020 0%,#c89038 45%,#f0d070 100%)",img:"konark.jpg",sv:"https://www.google.com/maps/embed?pb=!4v1714000031!6m8!1m7!1sCAoSLEFGMVFpcE9Lb25hcmsxMjM0NTY!2m2!1d19.888!2d86.095!3f180!4f0!5f0.7820865974627469"},
+    ],
+    infoCards:[{e:"📍",l:"Location",v:"Odisha"},{e:"🏗️",l:"Built By",v:"King Narasimhadeva I"},{e:"📅",l:"Constructed",v:"1250 AD"},{e:"🎨",l:"Style",v:"Kalinga Architecture"}],
+    facts:[{t:"A <b>colossal stone chariot</b> with 24 elaborately carved wheels."},{t:"Each wheel is a <b>precision sundial</b>, accurate to the minute."},{t:"Sailors called it the <b>Black Pagoda</b> — navigated by it at sea."},{t:"Main tower collapsed, possibly from <b>lightning in 17th century</b>."}],
+    history:"<p>The Konark Sun Temple was built in <b>1250 AD</b> by King Narasimhadeva I of the Eastern Ganga dynasty. Dedicated to Surya the sun god, it is conceived as a massive chariot with 24 wheels drawn by 7 horses.</p><p>Arab and Persian sailors called it the <b>Black Pagoda</b>, using it as a navigation landmark. The main tower collapsed around the 17th century.</p><p>A <b>UNESCO World Heritage Site since 1984</b>, the 24 chariot wheels also function as precise sundials through shadow play.</p>",
+    archText:"<p>Konark is the pinnacle of <b>Kalinga architecture</b>. The entire temple is a cosmic chariot — 24 intricately carved wheels, 7 galloping horses, every surface covered in sculptures depicting gods and musicians. Built without mortar using an interlocking stone system of extraordinary precision.</p>",
+    archCards:[{i:"☀️",l:"Deity",v:"Surya — Sun God"},{i:"🛞",l:"Wheels",v:"24 (Sundials)"},{i:"🐴",l:"Stone Horses",v:"7"},{i:"📅",l:"UNESCO",v:"1984"}],
+    voice:"Welcome to the Konark Sun Temple in Odisha, a masterpiece of Kalinga architecture built in 1250 AD by King Narasimhadeva the First. Dedicated to Surya the sun god, the entire temple is a gigantic stone chariot with 24 elaborately carved wheels drawn by 7 horses. Each wheel is a precision sundial, accurate to the minute. Sailors navigated the Bay of Bengal using this monument, calling it the Black Pagoda. This UNESCO World Heritage Site demonstrates the astronomical knowledge and artistic genius of medieval Odisha."
+  },
+  {
+    name:"Ajanta Caves",loc:"Aurangabad, Maharashtra",tag:"The World's Greatest Ancient Buddhist Paintings",
+    art:"linear-gradient(145deg,#1a1005 0%,#3a2808 25%,#5a4010 50%,#7a5820 70%,#b08840 100%)",
+    art2:"linear-gradient(160deg,#0f0800 0%,#2a1a05 25%,#4a3010 50%,#6a4818 75%,#a07830 100%)",
+    img:"ajanta.jpg",
+    heroImg:"ajanta.jpg",
+    views:[
+      {label:"Cave Exterior — Cliff",sub:"The horseshoe basalt cliff",art:"linear-gradient(160deg,#87CEEB 0%,#c0d0e0 30%,#9a8060 55%,#5a4020 85%,#3a2810 100%)",img:"ajanta.jpg",sv:"https://www.google.com/maps/embed?pb=!4v1714000040!6m8!1m7!1sCAoSLEFGMVFpcE9BamFudGExMjM0NQ!2m2!1d20.551614!2d75.701082!3f120!4f0!5f0.7820865974627469"},
+      {label:"Cave Interior",sub:"Ancient Buddhist murals",art:"linear-gradient(145deg,#2a1a08 0%,#4a3010 30%,#6a4820 60%,#a88848 100%)",img:"ajanta.jpg",sv:"https://www.google.com/maps/embed?pb=!4v1714000041!6m8!1m7!1sCAoSLEFGMVFpcE9BamFudGExMjM0NQ!2m2!1d20.5518!2d75.7013!3f280!4f0!5f0.7820865974627469"},
+    ],
+    infoCards:[{e:"📍",l:"Location",v:"Aurangabad, Maharashtra"},{e:"🏗️",l:"By",v:"Buddhist Monks"},{e:"📅",l:"Period",v:"2nd BC – 6th AD"},{e:"🎨",l:"Style",v:"Rock-cut Architecture"}],
+    facts:[{t:"<b>30 rock-cut caves</b> carved into a horseshoe basalt cliff."},{t:"Mineral pigments still <b>vivid after 2,000 years</b>."},{t:"<b>Lost for 1,300 years</b>, rediscovered by chance in 1819."},{t:"Murals depict <b>Jataka tales</b> of Buddha's past lives."}],
+    history:"<p>The Ajanta Caves are 30 rock-cut Buddhist cave monuments dating from the <b>2nd century BC to about 480 AD</b>. Carved into a horseshoe cliff, they served as monasteries and prayer halls for Buddhist monks.</p><p>Abandoned as Buddhism declined, they were forgotten for 1,300 years. In <b>1819</b>, British officer John Smith discovered them by chance while hunting.</p><p>The caves contain the <b>finest ancient paintings in existence</b>. <b>UNESCO World Heritage Site since 1983</b>.</p>",
+    archText:"<p>The Ajanta caves are carved entirely from basalt. Two types exist: <b>viharas</b> (monasteries with monk cells) and <b>chaityas</b> (prayer halls with vaulted ceilings and stupas). Artists applied natural mineral pigments to wet plaster — colours remaining brilliant after two millennia.</p>",
+    archCards:[{i:"🗿",l:"Total Caves",v:"30"},{i:"🎨",l:"Technique",v:"Fresco Secco"},{i:"🪨",l:"Rock Type",v:"Basalt"},{i:"📅",l:"UNESCO",v:"1983"}],
+    voice:"Welcome to the Ajanta Caves in Maharashtra, a UNESCO World Heritage Site dating to the 2nd century BC. These 30 rock-cut Buddhist cave monasteries are carved into a horseshoe-shaped basalt cliff. For over 1,300 years they lay hidden in jungle before being discovered by a British officer in 1819. The caves contain extraordinary ancient murals — the greatest collection of Buddhist paintings in the world. Artists used natural mineral pigments applied to wet plaster, creating colours that have survived over 2,000 years."
+  },
+  {
+    name:"Qutb Minar",loc:"New Delhi",tag:"The World's Tallest Brick Minaret",
+    art:"linear-gradient(145deg,#1a0a05 0%,#4a2010 25%,#8a4820 50%,#c08030 75%,#d89040 100%)",
+    art2:"linear-gradient(160deg,#100500 0%,#3a1508 25%,#6a3015 50%,#a05020 75%,#d88030 100%)",
+    img:"qutub.jpg",
+    heroImg:"qutub.jpg",
+    views:[
+      {label:"The Minaret — Full View",sub:"Rising 72.5m above Delhi",art:"linear-gradient(180deg,#87CEEB 0%,#b0c8e0 35%,#d8a870 60%,#a06020 85%,#603008 100%)",img:"qutub.jpg",sv:"https://www.google.com/maps/embed?pb=!4v1714000050!6m8!1m7!1sCAoSLEFGMVFpcE9RdXR1YjEyMzQ1!2m2!1d28.524435!2d77.185509!3f30!4f0!5f0.7820865974627469"},
+      {label:"Complex & Iron Pillar",sub:"The 1600-year-old iron wonder",art:"linear-gradient(145deg,#2a1808 0%,#5a3818 35%,#b07838 75%,#c89048 100%)",img:"qutub.jpg",sv:"https://www.google.com/maps/embed?pb=!4v1714000051!6m8!1m7!1sCAoSLEFGMVFpcE9RdXR1YjEyMzQ1!2m2!1d28.5246!2d77.1853!3f200!4f0!5f0.7820865974627469"},
+    ],
+    infoCards:[{e:"📍",l:"Location",v:"Mehrauli, New Delhi"},{e:"🏗️",l:"Built By",v:"Qutb ud-Din Aibak"},{e:"📅",l:"Begun",v:"1193 AD"},{e:"🎨",l:"Style",v:"Indo-Islamic"}],
+    facts:[{t:"<b>World's tallest brick minaret</b> at 72.5 metres."},{t:"Leans <b>65 cm from vertical</b> — perfectly structurally safe."},{t:"Iron Pillar nearby <b>never rusted</b> in 1,600+ years."},{t:"Built to announce the arrival of <b>Islam in northern India</b>."}],
+    history:"<p>The Qutb Minar was begun in <b>1193 AD</b> by Qutb ud-Din Aibak, first Sultan of Delhi. His son-in-law Iltutmish completed it.</p><p>At <b>72.5 metres</b>, the minaret called the faithful to prayer at the Quwwat ul-Islam mosque — the first mosque built in India.</p><p>The complex contains the <b>Iron Pillar of Delhi</b>, cast around 402 AD, which has never corroded. <b>UNESCO World Heritage Site since 1993</b>.</p>",
+    archText:"<p>The Qutb Minar features alternating angular and circular flutings. Five storeys divided by ornate balconies — first three in red sandstone, upper two in marble. <b>Kufic and Naskh Arabic calligraphy</b> decorates each level in bands.</p>",
+    archCards:[{i:"📏",l:"Height",v:"72.5 Metres"},{i:"🏛️",l:"Storeys",v:"5"},{i:"🧱",l:"Material",v:"Red Sandstone"},{i:"📅",l:"UNESCO",v:"1993"}],
+    voice:"Welcome to the Qutb Minar in New Delhi, the world's tallest brick minaret at 72.5 metres. Construction began in 1193 AD by Qutb ud-Din Aibak, founder of the Delhi Sultanate. The Qutb Complex also contains the remarkable Iron Pillar of Delhi, cast around 402 AD, which has resisted corrosion for over 1,600 years — a metallurgical mystery. This UNESCO World Heritage Site stands as a towering symbol of the Delhi Sultanate."
+  },
+  {
+    name:"Nalanda University",loc:"Rajgir, Bihar",tag:"The World's First Residential University",
+    art:"linear-gradient(145deg,#1a0a02 0%,#4a2808 25%,#7a4818 50%,#b88030 80%,#c89040 100%)",
+    art2:"linear-gradient(160deg,#100800 0%,#2a1a05 25%,#4a2e10 50%,#6a4418 75%,#a07028 100%)",
+    img:"nalanda.jpg",
+    heroImg:"nalanda.jpg",
+    views:[
+      {label:"Main Ruins Complex",sub:"The ancient university campus",art:"linear-gradient(180deg,#87CEEB 0%,#c0d8e0 35%,#c09870 60%,#805828 85%,#503808 100%)",img:"nalanda.jpg",sv:"https://www.google.com/maps/embed?pb=!4v1714000060!6m8!1m7!1sCAoSLEFGMVFpcE9OYWxhbmRhMTIzNDU!2m2!1d25.135961!2d85.443289!3f60!4f0!5f0.7820865974627469"},
+      {label:"Stupa & Temple Ruins",sub:"Red brick remnants of glory",art:"linear-gradient(145deg,#301008 0%,#602818 35%,#b06838 75%,#c88048 100%)",img:"nalanda.jpg",sv:"https://www.google.com/maps/embed?pb=!4v1714000061!6m8!1m7!1sCAoSLEFGMVFpcE9OYWxhbmRhMTIzNDU!2m2!1d25.1362!2d85.4435!3f220!4f0!5f0.7820865974627469"},
+    ],
+    infoCards:[{e:"📍",l:"Location",v:"Rajgir, Bihar"},{e:"🏗️",l:"Founded By",v:"Gupta Empire"},{e:"📅",l:"Period",v:"5th–12th Century"},{e:"🎨",l:"Style",v:"Ancient Campus"}],
+    facts:[{t:"Scholars came from <b>China, Korea, Japan, Tibet, Persia</b>."},{t:"At peak: <b>10,000 students & 2,000 teachers</b>."},{t:"Library had <b>three nine-storey buildings</b> of manuscripts."},{t:"Library burned for <b>3 months</b> when destroyed in 1193."}],
+    history:"<p>Nalanda was the <b>world's first residential university</b>, established in the 5th century during the Gupta Empire. It flourished for 700+ years as the world's greatest centre of learning.</p><p>At its zenith it had <b>10,000 students and 2,000 teachers</b> from across the known world.</p><p>In <b>1193 AD</b>, Bakhtiyar Khilji burned Nalanda. The great library burned for three months. <b>UNESCO World Heritage Site since 2016</b>.</p>",
+    archText:"<p>The Nalanda complex covered 14 hectares in an orderly <b>Gupta architectural</b> grid — temples, meditation halls, classrooms, and dormitories built in red brick with ornate decorations reflecting centuries of Buddhist scholarship.</p>",
+    archCards:[{i:"🏫",l:"Campus Area",v:"14 Hectares"},{i:"📚",l:"Library",v:"3 × Nine Storeys"},{i:"🌍",l:"Students From",v:"18+ Countries"},{i:"📅",l:"UNESCO",v:"2016"}],
+    voice:"Welcome to Nalanda, the ruins of the world's first residential university in Bihar. Founded in the 5th century during the Gupta Empire, Nalanda attracted scholars from China, Korea, Tibet, Persia, and across South Asia. Over 10,000 students lived and studied here alongside 2,000 teachers. The legendary library comprised three nine-storey buildings filled with millions of manuscripts. In 1193, Bakhtiyar Khilji burned the university. The library reportedly burned for three months. Nalanda became a UNESCO World Heritage Site in 2016."
+  }
+];
+
+let CUR=null,voiceOn=false;
+function renderCards(){
+  document.getElementById('cg').innerHTML=W.map((w,i)=>`
+    <div class="fc"><div class="fci">
+      <div class="ff">
+        <div class="iw">
+          <div class="art" style="background:${w.art}"></div>
+          <img src="${w.img}" alt="${w.name}" loading="lazy" onerror="this.style.opacity=0">
+        </div>
+        <div class="fnum">${String(i+1).padStart(2,'0')}</div>
+        <div class="fi"><h3>${w.name}</h3><p>${w.loc}</p></div>
+      </div>
+      <div class="fb">
+        <div><span class="bt2">Wonder #${i+1}</span><div class="bh2">${w.name}</div><div class="bd2"></div></div>
+        <ul class="bl2">
+          <li><b>Location:</b> ${w.loc}</li>
+          <li><b>Built by:</b> ${w.infoCards[1].v}</li>
+          <li><b>Period:</b> ${w.infoCards[2].v}</li>
+          <li><b>Style:</b> ${w.infoCards[3].v}</li>
+        </ul>
+        <button class="ebtn" onclick="openWonder(${i})">◆ Explore ${w.name}</button>
+      </div>
+    </div></div>`).join('');
+}
+
+// Hero background using local taj.jpg
+const hb=document.getElementById('hbgimg');
+hb.style.background=W[0].art2;
+const ht=new Image();
+ht.onload=()=>{hb.style.backgroundImage=`url('${ht.src}')`;hb.style.backgroundSize='cover';hb.style.backgroundPosition='center';};
+ht.src='taj.jpg';
+
+function openWonder(i){
+  CUR=W[i];stopVoice();closeVR();
+  document.getElementById('dart').style.background=CUR.art2;
+  const di=document.getElementById('dimg');di.src='';di.style.opacity=1;
+  di.onerror=()=>di.style.opacity=0;di.src=CUR.heroImg;
+  document.getElementById('dttl').textContent=CUR.name;
+  document.getElementById('dloc').textContent='📍 '+CUR.loc;
+  document.getElementById('dtag').textContent=CUR.tag;
+  document.getElementById('ics').innerHTML=CUR.infoCards.map(c=>`<div class="ic"><div class="ici">${c.e}</div><div><span class="icl">${c.l}</span><span class="icv">${c.v}</span></div></div>`).join('');
+  document.getElementById('flist').innerHTML=CUR.facts.map((f,i)=>`<div class="fact"><span class="factn">${String(i+1).padStart(2,'0')}</span><p class="factt">${f.t}</p></div>`).join('');
+  document.getElementById('htext').innerHTML=CUR.history;
+  document.getElementById('atext').innerHTML=CUR.archText;
+  document.getElementById('acg').innerHTML=CUR.archCards.map(c=>`<div class="acard"><div class="aico">${c.i}</div><span class="albl">${c.l}</span><div class="aval">${c.v}</div></div>`).join('');
+  document.getElementById('vtg').innerHTML=CUR.views.map((v,i)=>`<div class="vtc" onclick="openVR(${i})"><div class="art3" style="background:${v.art}"></div><img src="${v.img}" alt="${v.label}" onerror="this.style.opacity=0"><div class="vtcov"><span class="vtcico">🔭</span><div class="vtclbl">${v.label}</div><div class="vtcsub">${v.sub}</div><div class="vtcbtn">▶ Launch Google Street View 360°</div></div></div>`).join('');
+  tab('ov',document.querySelector('.tb'));
+  document.getElementById('mp').classList.add('off');document.getElementById('dp').classList.add('on');window.scrollTo(0,0);
+}
+function goHome(){stopVoice();closeVR();document.getElementById('mp').classList.remove('off');document.getElementById('dp').classList.remove('on');window.scrollTo(0,0);}
+function openVRDirect(){if(W[0])openWonder(0);}
+function tab(n,el){document.querySelectorAll('.tc').forEach(t=>t.classList.remove('on'));document.querySelectorAll('.tb').forEach(b=>b.classList.remove('on'));document.getElementById('tc-'+n).classList.add('on');el.classList.add('on');}
+
+function toggleVoice(){voiceOn?stopVoice():startVoice();}
+function startVoice(){
+  if(!CUR||!window.speechSynthesis){toast('Voice not supported');return;}
+  stopVoice();const u=new SpeechSynthesisUtterance(CUR.voice);u.rate=0.9;u.pitch=1;u.volume=1;
+  const vs=window.speechSynthesis.getVoices();
+  const v=vs.find(v=>v.name.includes('Google')&&v.lang.startsWith('en'))||vs.find(v=>v.lang.startsWith('en'));if(v)u.voice=v;
+  u.onstart=()=>{voiceOn=true;document.getElementById('vbtn').classList.add('on');document.getElementById('vwaves').classList.remove('off');document.getElementById('vbtxt').textContent='⏸ Pause Guide';};
+  u.onend=u.onerror=()=>{voiceOn=false;document.getElementById('vbtn').classList.remove('on');document.getElementById('vwaves').classList.add('off');document.getElementById('vbtxt').textContent='🎧 Play Voice Guide';};
+  window.speechSynthesis.speak(u);toast('🎧 Voice guide playing...');
+}
+function stopVoice(){if(window.speechSynthesis)window.speechSynthesis.cancel();voiceOn=false;const b=document.getElementById('vbtn');if(b){b.classList.remove('on');document.getElementById('vwaves').classList.add('off');document.getElementById('vbtxt').textContent='🎧 Play Voice Guide';}}
+if(window.speechSynthesis)window.speechSynthesis.onvoiceschanged=()=>window.speechSynthesis.getVoices();
+
+// Google Street View iframe-based 360° viewer
+function openVR(i){
+  const m=document.getElementById('vrm');
+  m.classList.add('on');
+  document.getElementById('vrtit').textContent=`360° View — ${CUR.name} · ${CUR.views[i].label}`;
+  document.getElementById('vrframe').src=CUR.views[i].sv;
+  document.getElementById('vrvtabs').innerHTML=CUR.views.map((v,j)=>`<button class="vrvt ${j===i?'on':''}" onclick="switchView(${j})">${v.label}</button>`).join('');
+  document.body.style.overflow='hidden';
+}
+function switchView(i){
+  document.querySelectorAll('.vrvt').forEach((b,j)=>b.classList.toggle('on',j===i));
+  document.getElementById('vrtit').textContent=`360° View — ${CUR.name} · ${CUR.views[i].label}`;
+  document.getElementById('vrframe').src=CUR.views[i].sv;
+}
+function closeVR(){
+  document.getElementById('vrm').classList.remove('on');
+  document.getElementById('vrframe').src='';
+  document.body.style.overflow='';
+  if(document.fullscreenElement)document.exitFullscreen();
+}
+function vrFS(){const el=document.getElementById('vrm');document.fullscreenElement?document.exitFullscreen():el.requestFullscreen&&el.requestFullscreen();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeVR();});
+
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),3500);}
+
+renderCards();
+</script>
+</body>
+</html>
